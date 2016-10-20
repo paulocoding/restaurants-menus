@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Foodtastic!</title>
+    <!-- Mobile-friendly viewport -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1>Foodtastic!</h1>
+      <nav>
+  			<ul class="navbar">
+          <li><a href="restaurants.html">Home</a></li>
+  			</ul>
+      </nav>
+    </header>
+
+    <main>
+      <h3>Create new menu item:</h3>
+      <form action="/createmenuitem" method="post">
+          <label for="name">New Item Name:</label>
+          <input type="text" name="name" value="">
+          <br>
+          <label for="name">Price:</label>
+          <input type="text" name="name" placeholder="$">
+          <br>
+          <label for="desc">Item Description:</label>
+          <textarea name="desc"></textarea>
+          <br>
+          <input type="submit" name="submit" value="submit">
+          <a href="restaurantmenu.html">Cancel</a>
+      </form>
+    </main>
+  </body>
+</html>

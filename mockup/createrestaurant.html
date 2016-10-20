@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Foodtastic!</title>
+    <!-- Mobile-friendly viewport -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1>Foodtastic!</h1>
+      <nav>
+  			<ul class="navbar">
+          <li><a href="restaurants.html">Home</a></li>
+  			</ul>
+      </nav>
+    </header>
+
+    <main>
+      <h3>Create new restaurant:</h3>
+      <form action="/createrestaurant" method="post">
+          <label for="name">New Restaurant Name:</label>
+          <input type="text" name="name" value="">
+          <br>
+          <input type="submit" name="submit" value="submit">
+          <a href="restaurants.html">Cancel</a>
+      </form>
+    </main>
+  </body>
+</html>
