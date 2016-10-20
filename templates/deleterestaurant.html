@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Foodtastic!</title>
+    <!-- Mobile-friendly viewport -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1>Foodtastic!</h1>
+      <nav>
+  			<ul class="navbar">
+          <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
+  			</ul>
+      </nav>
+    </header>
+
+    <main>
+      <form action="{{url_for('deleteRestaurant', restaurant_id=restaurant.id)}}" method="post">
+          <h4 class="warning">Are you sure you want to delele {{restaurant.name}}?</h4>
+          <br>
+          <input type="submit" name="submit" value="Confirm">
+          <a href="{{url_for('showRestaurants')}}">Cancel</a>
+      </form>
+    </main>
+  </body>
+</html>

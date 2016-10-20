@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Foodtastic!</title>
+    <!-- Mobile-friendly viewport -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1>Foodtastic!</h1>
+      <h2>Chessy Bites - Menu</h2>
+      <nav>
+  			<ul class="navbar">
+          <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
+  				<li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create new menu item</a></li>
+  			</ul>
+      </nav>
+    </header>
+
+    <main>
+      {% for item in items %}
+      <article class="menu">
+        <div class="menu-item">
+          <h4>{{item.name}}</h4>
+          <p>{{item.description}}</p>
+          <p>{{item.price}}</p>
+          <a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit</a>
+          <a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete</a>
+        </div>
+      </article>
+      {% endfor %}
+    </main>
+  </body>
+</html>
