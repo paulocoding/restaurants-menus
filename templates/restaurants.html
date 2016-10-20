@@ -28,6 +28,9 @@
           </div>
         </article>
       {% endfor %}
+      {% if restaurants|length == 0 %}
+        <p>There are no restaurants here.</p>
+      {% endif %}
     </main>
   </body>
 </html>

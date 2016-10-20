@@ -30,6 +30,9 @@
         </div>
       </article>
       {% endfor %}
+      {% if items|length == 0 %}
+        <p>There are no items here.</p>
+      {% endif %}
     </main>
   </body>
 </html>
