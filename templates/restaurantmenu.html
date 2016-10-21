@@ -1,48 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Foodtastic!</title>
-    <!-- Mobile-friendly viewport -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <header>
-      <h1>Foodtastic!</h1>
-      <h2>{{restaurant.name}} - Menu</h2>
-      <nav>
-  			<ul class="navbar">
-          <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
-  				<li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create new menu item</a></li>
-  			</ul>
-      </nav>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class="flash">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-    </header>
+{% extends "base.html" %}
 
-    <main>
-      {% for item in items %}
-      <article class="menu">
-        <div class="menu-item">
-          <h4>{{item.name}}</h4>
-          <p>{{item.description}}</p>
-          <p>price: {{item.price}}</p>
-          <p>course: {{item.course}}</p>
-          <a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit</a>
-          <a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete</a>
-        </div>
-      </article>
-      {% endfor %}
-      {% if items|length == 0 %}
-        <p>There are no items here.</p>
-      {% endif %}
-    </main>
-  </body>
-</html>
+{% block header %}
+  <h2>{{restaurant.name}} - Menu</h2>
+  <nav>
+		<ul class="navbar">
+      <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
+			<li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create new menu item</a></li>
+		</ul>
+  </nav>
+{% endblock %}
+
+{% block main %}
+  {% for item in items %}
+  <article class="menu">
+    <div class="menu-item">
+      <h4>{{item.name}}</h4>
+      <p>{{item.description}}</p>
+      <p>price: {{item.price}}</p>
+      <p>course: {{item.course}}</p>
+      <a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit</a>
+      <a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete</a>
+    </div>
+  </article>
+  {% endfor %}
+  {% if items|length == 0 %}
+    <p>There are no items here.</p>
+  {% endif %}
+{% endblock %}

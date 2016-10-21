@@ -1,41 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Foodtastic!</title>
-    <!-- Mobile-friendly viewport -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <header>
-      <h1>Foodtastic!</h1>
-      <nav>
-  			<ul class="navbar">
-          <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
-  			</ul>
-      </nav>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class="flash">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-    </header>
-    <main>
-      <form action="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}" method="post">
-          <h4 class="warning">Are you sure you want to delele this item?</h4>
-          <div class="item">
-            <h5>{{item.name}}</h5>
-            <p>{{item.description}}</p>
-            <p>{{item.price}}</p>
-          </div>
-          <br>
-          <input type="submit" name="submit" value="Confirm">
-          <a href="{{url_for('showMenu', restaurant_id=restaurant.id)}}">Cancel</a>
-      </form>
-    </main>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block header %}
+  <nav>
+		<ul class="navbar">
+      <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
+		</ul>
+  </nav>
+{% endblock %}
+
+{% block main %}
+  <form action="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}" method="post">
+      <h4 class="warning">Are you sure you want to delele this item?</h4>
+      <div class="item">
+        <h5>{{item.name}}</h5>
+        <p>{{item.description}}</p>
+        <p>{{item.price}}</p>
+      </div>
+      <br>
+      <input type="submit" name="submit" value="Confirm">
+      <a href="{{url_for('showMenu', restaurant_id=restaurant.id)}}">Cancel</a>
+  </form>
+{% endblock %}

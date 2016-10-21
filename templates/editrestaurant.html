@@ -1,39 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Foodtastic!</title>
-    <!-- Mobile-friendly viewport -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <header>
-      <h1>Foodtastic!</h1>
-      <nav>
-  			<ul class="navbar">
-          <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
-  			</ul>
-      </nav>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul class="flash">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-    </header>
+{% extends "base.html" %}
 
-    <main>
-      <form action="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" method="post">
-          <h2>Edit Restaurant:</h2>
-          <label for="name">Restaurant Name:</label>
-          <input type="text" name="name" placeholder="{{restaurant.name}}">
-          <br>
-          <input type="submit" name="submit" value="Modify">
-          <a href="{{url_for('showRestaurants')}}">Cancel</a>
-      </form>
-    </main>
-  </body>
-</html>
+{% block header %}
+  <nav>
+		<ul class="navbar">
+      <li><a href="{{url_for('showRestaurants')}}">Home</a></li>
+		</ul>
+  </nav>
+{% endblock %}
+
+{% block main %}
+  <form action="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" method="post">
+      <h2>Edit Restaurant:</h2>
+      <label for="name">Restaurant Name:</label>
+      <input type="text" name="name" placeholder="{{restaurant.name}}">
+      <br>
+      <input type="submit" name="submit" value="Modify">
+      <a href="{{url_for('showRestaurants')}}">Cancel</a>
+  </form>
+{% endblock %}
