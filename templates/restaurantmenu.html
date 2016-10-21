@@ -16,6 +16,15 @@
   				<li><a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create new menu item</a></li>
   			</ul>
       </nav>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flash">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
     </header>
 
     <main>

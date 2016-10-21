@@ -1,9 +1,10 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem
 
 app = Flask(__name__)
+app.secret_key = 'v3ri_s3cr31'
 
 #   Sample data:
 # Fake Restaurants
@@ -95,6 +96,7 @@ def newRestaurant():
         return render_template('createrestaurant.html')
     if request.method == 'POST':
         createRestaurantDb(request.form['name'])
+        flash('Restaurant created!')
         return redirect(url_for('showRestaurants'))
 
 
@@ -104,6 +106,7 @@ def editRestaurant(restaurant_id):
         return render_template('editrestaurant.html', restaurant=getRestaurant(restaurant_id))
     if request.method == 'POST':
         editRestaurantDb(restaurant_id=restaurant_id, newname=request.form['name'])
+        flash('Restaurant edited!')
         return redirect(url_for('showRestaurants'))
 
 
@@ -113,6 +116,7 @@ def deleteRestaurant(restaurant_id):
         return render_template('deleterestaurant.html', restaurant=getRestaurant(restaurant_id))
     if request.method == 'POST':
         deleteRestaurantDb(restaurant_id)
+        flash('Restaurant deleted!')
         return redirect(url_for('showRestaurants'))
 
 
@@ -134,6 +138,7 @@ def newMenuItem(restaurant_id):
                      price=request.form['price'],
                      course=request.form['course'],
                      restaurant_id=restaurant_id)
+        flash('Menu item created!')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
 
 
@@ -147,6 +152,7 @@ def editMenuItem(restaurant_id, menu_id):
                    description=request.form['desc'],
                    price=request.form['price'],
                    course=request.form['course'])
+        flash('Menu item edited!')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
 
 
@@ -156,6 +162,7 @@ def deleteMenuItem(restaurant_id, menu_id):
         return render_template('deletemenuitem.html', restaurant=getRestaurant(restaurant_id), item=getItem(menu_id))
     if request.method == 'POST':
         deleteItemDb(menu_id)
+        flash('Menu item deleted!')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
 
 if __name__ == '__main__':
